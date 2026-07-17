@@ -8,6 +8,7 @@ document.getElementById('start-btn').addEventListener('click', async () => {
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
+    world: 'MAIN',
     func: coreScraperEngine,
     args: [selectorsInput, customScriptInput]
   });
