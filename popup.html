@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 320px; padding: 15px; font-family: system-ui, -apple-system, sans-serif; background: #fafafa; color: #222; }
+    h3 { margin: 0 0 12px 0; font-size: 16px; color: #0070f3; }
+    label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px; }
+    input, textarea { width: 100%; box-sizing: border-box; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; font-size: 12px; }
+    textarea { height: 80px; resize: vertical; }
+    button { width: 100%; padding: 10px; background: #0070f3; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    button:hover { background: #0051b3; }
+    .note { font-size: 11px; color: #666; line-height: 1.4; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h3>Universal Web Scraper</h3>
+  
+  <label for="selectors">CSS Selectors (Pisahkan dengan koma):</label>
+  <input type="text" id="selectors" placeholder="#provinsi, #kabupaten, #kecamatan, table tr">
+
+  <label for="customScript">Skrip Otomatisasi Kustom (JS Opsional):</label>
+  <textarea id="customScript" placeholder="// Tulis logika klik/looping dinamis Anda di sini jika diperlukan..."></textarea>
+
+  <button id="start-btn">Jalankan Ekstraksi</button>
+  
+  <p class="note">Ekstensi akan mengekstrak data berdasarkan selector atau menjalankan skrip kustom langsung pada tab aktif Anda.</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
