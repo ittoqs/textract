@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Web Scraper",
+  "version": "1.0",
+  "description": "Ekstensi universal untuk scraping data dari web statis maupun dinamis (termasuk form bertingkat).",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
