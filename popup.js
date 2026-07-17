@@ -39,22 +39,28 @@ async function coreScraperEngine(selectorsStr, customScriptStr) {
   
   // 2. Eksekusi Pencarian Elemen Standar (Untuk Web Statis / Elemen Instan)
   if (selectorsStr.trim() !== "" && finalResult.length === 0) {
-    const listSelectors = selectorsStr.split(',').map(s => s.trim());
+    const listSelectors = selectorsStr.split(',').map(s => s.trim()).filter(s => s !== "");
     let scrapedRow = {};
 
     listSelectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      if (elements.length > 0) {
-        // Jika elemen berupa dropdown/select, ambil opsi yang terpilih atau semua opsi
-        if (elements[0].tagName === 'SELECT') {
-          scrapedRow[selector] = Array.from(elements[0].options).map(o => o.text);
-        } else {
-          // Ambil teks data dari element biasa
-          scrapedRow[selector] = elements.length === 1 ? elements[0].innerText.trim() : Array.from(elements).map(e => e.innerText.trim());
+      try {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+          // Jika elemen berupa dropdown/select, ambil opsi yang terpilih atau semua opsi
+          if (elements[0].tagName === 'SELECT') {
+            scrapedRow[selector] = Array.from(elements[0].options).map(o => o.text);
+          } else {
+            // Ambil teks data dari element biasa
+            scrapedRow[selector] = elements.length === 1 ? elements[0].innerText.trim() : Array.from(elements).map(e => e.innerText.trim());
+          }
         }
+      } catch (err) {
+        console.warn("Invalid selector:", selector);
       }
     });
-    finalResult.push(scrapedRow);
+    if (Object.keys(scrapedRow).length > 0) {
+      finalResult.push(scrapedRow);
+    }
   }
 
   // 3. Output Penanganan Unduhan (JSON & TXT)
